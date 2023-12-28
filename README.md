@@ -264,3 +264,385 @@ O `QuantileDiscretizer` é uma técnica de pré-processamento que discretiza as 
 - **Preparação para Algoritmos de Árvore de Decisão**: Algoritmos de árvore de decisão frequentemente se beneficiam de dados discretos. O `QuantileDiscretizer` pode ser útil ao preparar dados para esses algoritmos.
 - **Exploração de Relações Não Lineares**: Em alguns casos, discretizar características pode ajudar a capturar relações não lineares em modelos que lidam melhor com variáveis categóricas.
 - **Redução de Sensibilidade à Escala**: O `QuantileDiscretizer` é menos sensível à escala das características, o que pode ser útil em conjuntos de dados onde as características têm escalas muito diferentes.
+
+# RFormula
+
+- Codifica variáveis categóricas e cria features para modelos de regressão linear
+
+O `RFormula` é uma ferramenta utilizada em bibliotecas de machine learning, como o Apache Spark MLlib, para criar features apropriadas para modelos de regressão linear a partir de dados que incluem variáveis categóricas. Essa técnica é inspirada na notação de fórmula R e facilita a especificação de quais variáveis devem ser incluídas como features no modelo.
+
+### Funcionalidade do RFormula
+
+1. **Especificação de Fórmula**: O usuário fornece uma fórmula que descreve a relação desejada entre as variáveis de entrada e a variável de saída do modelo. A fórmula é semelhante à notação usada em R.
+2. **Codificação de Variáveis Categóricas**: O `RFormula` trata automaticamente variáveis categóricas, convertendo-as em representações numéricas apropriadas para modelos de regressão linear.
+3. **Criação de Features Interativas**: Além da codificação de variáveis categóricas, o `RFormula` pode criar features interativas, permitindo explorar interações entre diferentes variáveis.
+
+### Aplicações Comuns
+
+- **Modelos de Regressão Linear**: O `RFormula` é especialmente útil ao trabalhar com modelos de regressão linear, onde é necessário especificar a relação funcional entre as variáveis independentes e dependentes.
+- **Tratamento de Variáveis Categóricas**: Ao lidar com conjuntos de dados que contêm variáveis categóricas, o `RFormula` simplifica o processo de codificação dessas variáveis de forma apropriada para modelos lineares.
+- **Exploração de Interações entre Variáveis**: A capacidade do `RFormula` de criar features interativas facilita a exploração de interações complexas entre diferentes variáveis.
+- **Integração com o Apache Spark MLlib**: O `RFormula` é particularmente útil em ambientes que utilizam o Apache Spark MLlib, oferecendo uma maneira eficiente de preparar dados para modelos de machine learning em larga escala.
+
+# VectorSlicer
+
+- Extrai subconjuntos de um vetor ou vetor espesso
+
+O `VectorSlicer` é uma ferramenta utilizada em bibliotecas de machine learning, como o Apache Spark MLlib, para extrair subconjuntos específicos de um vetor ou vetor espesso. Ele permite selecionar apenas os elementos relevantes de um vetor, facilitando a criação de features específicas para modelos que requerem apenas um subconjunto das variáveis disponíveis.
+
+### Funcionalidade do VectorSlicer
+
+1. **Especificação de Índices ou Nomes**: O usuário fornece uma lista de índices ou nomes de variáveis que deseja extrair do vetor original.
+2. **Extração dos Subconjuntos**: O `VectorSlicer` então extrai os elementos correspondentes aos índices ou nomes fornecidos, criando um novo vetor contendo apenas esses elementos.
+3. **Manuseio de Vetores Espessos**: Além de vetores densos, o `VectorSlicer` é capaz de lidar com vetores espessos, otimizando a extração de subconjuntos em cenários de alta dimensionalidade.
+
+### Aplicações Comuns
+
+- **Seleção de Features Relevantes**: O `VectorSlicer` é útil quando apenas um subconjunto específico de variáveis é relevante para um modelo, permitindo a seleção eficiente dessas features.
+- **Otimização de Recursos**: Em conjuntos de dados com alta dimensionalidade, onde nem todas as variáveis são relevantes para um determinado modelo, o `VectorSlicer` ajuda a otimizar o uso de recursos.
+- **Integração com o Apache Spark MLlib**: O `VectorSlicer` é uma ferramenta eficaz em ambientes que utilizam o Apache Spark MLlib, onde o processamento de dados em larga escala é necessário, e a seleção eficiente de subconjuntos é crucial para o desempenho do modelo.
+
+# ChiSqSelector (Qui-Quadrado Selector)
+
+- Seleciona features com base em testes estatísticos de qui-quadrado
+
+O `ChiSqSelector` é uma técnica de seleção de features utilizada em bibliotecas de machine learning, como o Apache Spark MLlib, que utiliza testes estatísticos de qui-quadrado para selecionar as features mais relevantes em relação à variável de saída. Essa técnica é especialmente útil quando se lida com conjuntos de dados com variáveis categóricas e o objetivo é identificar as features que têm uma relação estatisticamente significativa com a variável de destino.
+
+### Funcionalidade do ChiSqSelector
+
+1. **Especificação do Número de Features a Selecionar**: O usuário fornece o número desejado de features a serem selecionadas ou um limite superior, e o `ChiSqSelector` identifica as features mais relevantes.
+2. **Cálculo do Qui-Quadrado**: O `ChiSqSelector` calcula a estatística de qui-quadrado para cada feature em relação à variável de saída, medindo a dependência entre elas.
+3. **Seleção com Base em Qui-Quadrado Crítico**: As features são selecionadas com base no valor de qui-quadrado em comparação com um qui-quadrado crítico, determinado pelo usuário ou inferido automaticamente.
+
+### Aplicações Comuns
+
+- **Seleção de Features em Classificação de Variáveis Categóricas**: O `ChiSqSelector` é eficaz ao lidar com conjuntos de dados que contêm variáveis categóricas e o objetivo é selecionar as features mais relevantes para um modelo de classificação.
+- **Redução de Dimensionalidade**: Em conjuntos de dados com muitas features, o `ChiSqSelector` pode ser usado para reduzir a dimensionalidade, mantendo apenas as features mais informativas.
+- **Preparação de Dados para Modelos de Classificação**: Antes de treinar modelos de classificação, o `ChiSqSelector` pode ser aplicado para identificar features que têm uma relação estatisticamente significativa com a variável de saída.
+- **Integração com o Apache Spark MLlib**: O `ChiSqSelector` é valioso em ambientes que utilizam o Apache Spark MLlib, onde pode lidar eficientemente com grandes conjuntos de dados e realizar seleção de features escalável.
+
+# UnivariateFeatureSelector
+
+Selecionando atributos com maior relevancia:
+
+A classe `UnivariateFeatureSelector` é uma parte do módulo `pyspark.ml.feature` no Apache Spark. Essa classe é projetada para selecionar características com base em testes estatísticos univariados em relação às etiquetas. Aqui estão detalhes sobre a classe e um exemplo de uso:
+
+### Classe UnivariateFeatureSelector
+
+A classe `UnivariateFeatureSelector` é um seletor de características que utiliza testes estatísticos univariados para escolher as características mais relevantes para um determinado conjunto de dados. Ela faz parte do ecossistema PySpark e oferece suporte a diferentes modos de seleção e tipos de teste estatístico, dependendo da natureza das características e das etiquetas.
+
+### Parâmetros Principais:
+
+- `featuresCol` (padrão: 'features'): Nome da coluna que contém as características.
+- `outputCol` (padrão: None): Nome da coluna de saída que conterá as características selecionadas.
+- `labelCol` (padrão: 'label'): Nome da coluna que contém as etiquetas.
+- `selectionMode` (padrão: 'numTopFeatures'): Modo de seleção de características, que pode ser 'numTopFeatures', 'percentile', 'fpr', 'fdr' ou 'fwe'.
+
+---
+
+# REGRESSÃO LINEAR
+
+Regressão linear é uma equação para se estimar a condicional de uma variável y, dados os valores de algumas outras variáveis x. A regressão, em geral, tem como objetivo tratar de um valor que não se consegue estimar inicialmente.
+
+- Importar dados
+- Vetorizar e Transformar usando RFormula
+- Dividir em treino e teste usando randomSplit (70/30 %)
+- Criar um modelo de dados treinado
+- Prever HP usando dados de teste
+- Avaliar performance do modelo
+
+### HIPER PARÂMETROS
+
+- loss: função de perda. squaredError, huber. (padrão squareError)
+- maxlter: número máximo de interações. (padrão 100)
+- standardization: define se os dados devem ser padronizados antes de criar o modelo. (padrão True)
+
+---
+
+# Generalized linear refression
+
+| TIPO | VARIÁVEL DE RESPOSTA |
+| --- | --- |
+| Gaussiano | Contínuo |
+| Binomial | Binário |
+| Poission | Discreto |
+| Gamma | Contínuo |
+
+************Hiper Parâmetros************
+
+- link: define a função de link. Valores possíveis: indentity, log,  inverse, logit, probit, cloglog e sqrt
+- maxIter: número máximo de interações. (padrão 100)
+- regParam: índice de regularização. (padrão 0)
+
+# GeneralizedLinearRegression
+
+- Modelo de regressão linear generalizado para diferentes distribuições de erro
+
+O `GeneralizedLinearRegression` é uma técnica de modelagem de machine learning que estende a regressão linear clássica para lidar com diferentes distribuições de erro, permitindo uma maior flexibilidade na modelagem de relações entre variáveis independentes e dependentes. Ele pertence à classe de modelos conhecidos como modelos lineares generalizados (GLM), que incluem a regressão linear como caso especial.
+
+### Funcionalidade do GeneralizedLinearRegression
+
+1. **Especificação da Distribuição e Função de Ligação**: O usuário especifica a distribuição do erro (por exemplo, normal, Poisson, binomial) e a função de ligação que relaciona a média da distribuição à combinação linear das variáveis independentes.
+2. **Estimação dos Parâmetros**: O `GeneralizedLinearRegression` estima os parâmetros do modelo usando técnicas de otimização, como a maximização da verossimilhança.
+3. **Modelagem de Relações Não Lineares e Não Normais**: Ao permitir diferentes distribuições de erro e funções de ligação, o `GeneralizedLinearRegression` é capaz de lidar com relações não lineares e não normais entre as variáveis.
+
+### Aplicações Comuns
+
+- **Modelagem de Resposta de Variáveis Discretas**: Pode ser usado para modelar variáveis dependentes que seguem uma distribuição discreta, como contagem de eventos (Poisson) ou variáveis binárias (binomial).
+- **Lidando com Heterocedasticidade**: Pode lidar com casos em que a variância dos erros não é constante em relação às variáveis independentes, como ocorre em modelos de regressão linear clássicos.
+- **Adaptação a Dados Não Normais**: Útil quando os pressupostos de normalidade e homocedasticidade não são atendidos, possibilitando a modelagem de dados com distribuições mais complexas.
+- **Integração com o Apache Spark MLlib**: O `GeneralizedLinearRegression` é aplicável em ambientes distribuídos, como o Apache Spark MLlib, permitindo treinamento eficiente em grandes conjuntos de dados.
+
+Divisão:
+
+- Objetivo é criar divisões mais “puras” possiveis atraves de uma medida de pureza
+    - GINI
+    - ENTROPIA
+    - ERRO DE CLASSIFICAÇÃO
+
+Condição de parada:
+
+- Quando se chega a classe pura
+- Número mínimo de observações e um nó
+- A última participação nao amenta a métrica de pureza
+
+**************************Random Forest**************************
+
+- Induz diversas árvores de decisão
+- Executa a processo de classificação para cada árvore
+- Executa um processo de votação para decisão da classe
+
+******************Múltiplas árvores******************
+
+- Cria conjuntos de dados de treino de forma aleatória, porém com reposição (bootstrap)
+- Do total de atributos da relação, é selecioinado um subconjunto de atributos aleatórios
+
+**********************************Hiper Parâmetros**********************************
+
+- bootstrap: se deve ser usado na construção das árvores. (padrão True)
+- maxBins: número máximo de valores na discretização de atributos contínuos. (padrão 32)
+- maxDepth: profundidade máxima da árvore. (padrão 5)
+- numTrees: número de árvores aleatórias que serão treinadas. (padrão 20)
+- seed: semente para repetir o processo.
+
+# LogisticRegression
+
+- Modelo de classificação para problemas binários utilizando a função logística
+
+A `LogisticRegression` é uma técnica de modelagem de machine learning utilizada para resolver problemas de classificação binária. Este modelo é particularmente eficaz quando se deseja prever a probabilidade de uma observação pertencer a uma classe específica. A função logística é empregada para transformar a combinação linear das variáveis independentes em uma probabilidade entre 0 e 1.
+
+### Funcionalidade da LogisticRegression
+
+1. **Modelo Linear de Combinação**: A `LogisticRegression` utiliza uma combinação linear das variáveis independentes ponderadas pelos coeficientes do modelo.
+2. **Função Logística**: Aplica a função logística à combinação linear para transformar os valores em uma probabilidade, que representa a chance de pertencer à classe positiva.
+3. **Estimação de Parâmetros**: Os parâmetros do modelo (coeficientes e intercepto) são estimados utilizando técnicas como máxima verossimilhança.
+
+### Aplicações Comuns
+
+- **Problemas de Classificação Binária**: A `LogisticRegression` é frequentemente usada para prever a probabilidade de uma observação pertencer a uma das duas classes.
+- **Interpretação de Coeficientes**: Os coeficientes do modelo podem ser interpretados para entender como cada variável influencia a probabilidade de pertencer à classe positiva.
+- **Diagnóstico Médico**: Na área da saúde, a regressão logística pode ser aplicada para prever se um paciente tem uma determinada condição médica com base em variáveis explicativas.
+- **Marketing Direcionado**: Pode ser utilizada em estratégias de marketing para prever a probabilidade de um cliente realizar uma determinada ação, como a compra de um produto.
+- **Integração com Bibliotecas de Machine Learning**: A `LogisticRegression` é amplamente suportada em bibliotecas populares de machine learning, como scikit-learn em Python, o que facilita a aplicação em diversos contextos.
+
+# Naive Bayes
+
+- Modelo probabilístico baseado no Teorema de Bayes para classificação
+
+O algoritmo Naive Bayes é um modelo de classificação probabilístico que se baseia no Teorema de Bayes para calcular a probabilidade condicional de uma classe dado um conjunto de características. A abordagem "ingênua" (naive) do Naive Bayes assume independência condicional entre as características, o que simplifica os cálculos e torna o modelo eficiente, mesmo com conjuntos de dados grandes.
+
+### Funcionalidade do Naive Bayes
+
+1. **Teorema de Bayes**: Utiliza o Teorema de Bayes para calcular a probabilidade condicional de uma classe dada a ocorrência de características específicas.
+2. **Assunção de Independência Condicional**: Assume independência condicional entre as características, simplificando o cálculo da probabilidade conjunta.
+3. **Estimação de Parâmetros**: Estima parâmetros do modelo, como probabilidades a priori e probabilidades condicionais, a partir dos dados de treinamento.
+
+### Aplicações Comuns
+
+- **Classificação de Documentos de Texto**: Naive Bayes é amplamente usado em classificação de documentos de texto, como filtragem de spam e categorização de notícias.
+- **Diagnóstico Médico**: Pode ser aplicado em problemas de diagnóstico médico, por exemplo, para prever se um paciente tem uma doença específica com base em sintomas.
+- **Análise de Sentimento**: É utilizado em análise de sentimento para classificar opiniões como positivas, negativas ou neutras.
+- **Sistemas de Recomendação**: Pode ser usado em sistemas de recomendação para prever se um usuário irá gostar ou não de um determinado item.
+- **Integração com Aprendizado de Máquina Supervisionado**: O Naive Bayes é fácil de implementar e computacionalmente eficiente, sendo uma escolha popular para problemas de classificação em muitos contextos de aprendizado de máquina.
+
+# Multilayer Perceptron Classifier
+
+- Modelo de rede neural artificial com múltiplas camadas para classificação
+
+O `Multilayer Perceptron Classifier` é um modelo de rede neural artificial composto por múltiplas camadas, incluindo camadas de entrada, ocultas e saída. Cada neurônio em uma camada está conectado a todos os neurônios na camada seguinte, formando uma rede profunda. Esse modelo é capaz de aprender representações complexas e não lineares dos dados, tornando-o eficaz em problemas de classificação.
+
+### Funcionalidade do Multilayer Perceptron Classifier
+
+1. **Rede Neural Profunda**: Possui várias camadas, incluindo uma camada de entrada, uma ou mais camadas ocultas e uma camada de saída. Cada camada contém vários neurônios interconectados.
+2. **Funções de Ativação Não Lineares**: Utiliza funções de ativação não lineares, como ReLU (Rectified Linear Unit), para introduzir não linearidades e permitir a aprendizagem de relações complexas nos dados.
+3. **Treinamento por Retropropagação (Backpropagation)**: O treinamento é realizado usando o algoritmo de retropropagação, ajustando os pesos da rede para minimizar a função de perda em relação aos rótulos conhecidos.
+
+### Aplicações Comuns
+
+- **Classificação em Dados Complexos**: O `Multilayer Perceptron Classifier` é eficaz em problemas de classificação onde as relações entre as variáveis são complexas e não lineares.
+- **Reconhecimento de Imagens**: Pode ser aplicado em tarefas de reconhecimento de imagens, como classificação de objetos em uma cena.
+- **Processamento de Linguagem Natural**: É utilizado em aplicações que envolvem processamento de linguagem natural, como classificação de sentimentos em texto.
+- **Análise de Séries Temporais**: Pode ser empregado em problemas de classificação envolvendo séries temporais, como previsão de séries temporais.
+- **Integração com Ferramentas de Aprendizado Profundo**: O `Multilayer Perceptron Classifier` é uma escolha comum quando se utiliza frameworks de aprendizado profundo, como TensorFlow ou PyTorch, permitindo a construção de modelos mais complexos para tarefas de classificação.
+
+# K-Means
+
+- Algoritmo de agrupamento que divide dados em k clusters
+
+O algoritmo K-Means é uma técnica de aprendizado não supervisionado usada para agrupar dados sem rótulos em k clusters. Ele atribui cada ponto de dados ao cluster cujo centróide (ponto médio) é mais próximo. O objetivo do K-Means é minimizar a soma dos quadrados das distâncias entre os pontos de dados e os centróides de seus clusters atribuídos.
+
+### Funcionalidade do K-Means
+
+1. **Inicialização dos Centróides**: Inicializa k centróides, geralmente de maneira aleatória ou usando uma heurística, para representar os centros iniciais dos clusters.
+2. **Atribuição dos Pontos aos Clusters**: Atribui cada ponto de dados ao cluster cujo centróide é mais próximo, com base nas distâncias euclidianas.
+3. **Atualização dos Centróides**: Recalcula os centróides de cada cluster como a média dos pontos atribuídos a esse cluster.
+4. **Iteração até Convergência**: Repete os passos 2 e 3 até que os centróides não mudem significativamente ou um número máximo de iterações seja alcançado.
+
+### Aplicações Comuns
+
+- **Segmentação de Mercado**: O K-Means é usado para segmentar clientes ou produtos em grupos com características semelhantes para estratégias de marketing direcionado.
+- **Análise de Imagens**: Pode ser aplicado para agrupar pixels em uma imagem, facilitando a compressão de imagens ou identificação de padrões.
+- **Agrupamento de Documentos**: É útil em agrupamento de documentos, onde documentos semelhantes podem ser agrupados para análise de tópicos ou recuperação de informação.
+- **Detecção de Anomalias**: Pode ser utilizado para detecção de anomalias, onde pontos que não se encaixam bem em nenhum cluster podem indicar comportamento incomum.
+- **Integração com Métodos de Pré-processamento**: O K-Means é frequentemente usado como parte de um pipeline de pré-processamento para agrupar dados antes de aplicar técnicas de aprendizado supervisionado.
+
+# Agrupamento Hierárquico com HierarchicalBisecting
+
+O Agrupamento Hierárquico é uma técnica de agrupamento que organiza os dados em uma estrutura de árvore ou dendrograma, onde os clusters são formados de maneira hierárquica. O algoritmo HierarchicalBisecting é uma abordagem específica para agrupamento hierárquico que utiliza uma abordagem de bisseção recursiva para dividir clusters.
+
+### Funcionalidade do HierarchicalBisecting
+
+1. **Início com um Único Cluster**: Começa com todos os dados agrupados em um único cluster.
+2. **Bisseção Recursiva**: O algoritmo realiza uma bisseção recursiva do cluster existente, dividindo-o em dois subclusters.
+3. **Critério de Bisseção**: A escolha de como dividir um cluster pode ser baseada em critérios como distância, tamanho ou densidade dos pontos.
+4. **Repetição até Alcançar Número Desejado de Clusters ou Critério de Parada**: O processo de bisseção é repetido até alcançar o número desejado de clusters ou atender a um critério de parada predefinido.
+
+### Aplicações Comuns
+
+- **Análise de Agrupamento Hierárquico**: O HierarchicalBisecting é usado quando se deseja uma visão hierárquica clara da estrutura de agrupamento dos dados.
+- **Biologia e Genômica**: Pode ser aplicado em biologia para analisar padrões hierárquicos em dados genômicos.
+- **Agrupamento de Documentos e Texto**: Útil em agrupamento de documentos onde a hierarquia pode representar tópicos mais abstratos e específicos.
+- **Visualização de Dados Hierárquicos**: O dendrograma gerado pelo agrupamento hierárquico pode ser visualizado para entender as relações hierárquicas entre os clusters.
+- **Integração com Outros Métodos de Análise de Agrupamento**: Pode ser usado como parte de uma análise de agrupamento mais abrangente, combinando abordagens hierárquicas e não hierárquicas para explorar estruturas complexas nos dados.
+
+### Hiper Pâmetros do HierarchicalBisecting
+
+- **********************************distanceMeasure:********************************** Medida de distância: Opções: “euclidian” e “cosine”. (padrão: euclidian)
+- ****k:**** número de clusters. (padrão 4)
+- **************maxIter:************** número máximo de iterações. (padrão 20)
+- ********************minDivisibleClusterSize:******************** o número mínimo de divisões se ≥1 ou a propoção minima for < 1 (padrão 1)
+
+### Avaliação da Performance
+
+- Coeficiente Silhouette
+- Medida do quanto cada ponto em um cluster está próximo do cluster vizinho.
+- Valor entre -1 e 1
+- Próximo a 0 indica que os pontos estão próximos do limite
+- Próximo a 1 indica que os pontos estão distântes do cluster vizinho
+- Próximo a -1 indica que os pontos estão no cluster errado
+
+# FP-Growth (Frequent Pattern Growth)
+
+O algoritmo FP-Growth (Frequent Pattern Growth) é uma técnica eficiente de mineração de dados que visa descobrir padrões frequentes em conjuntos de dados, especialmente em dados transacionais. Ele utiliza uma estrutura de árvore compacta chamada árvore FP (FP-tree) para representar a frequência de itens e facilitar a extração de padrões frequentes.
+
+### Funcionalidade do FP-Growth
+
+1. **Construção da Árvore FP (FP-Tree)**: O algoritmo constrói uma árvore FP compacta a partir do conjunto de transações, onde cada caminho da raiz até uma folha representa um padrão frequente.
+2. **Identificação de Conjuntos Frequentes**: O FP-Growth utiliza a árvore FP para identificar conjuntos frequentes de itens, evitando a geração explícita de todos os conjuntos de itens.
+3. **Geração de Regras de Associação**: Com base nos conjuntos frequentes, o algoritmo gera regras de associação que revelam padrões relacionados à coocorrência de itens em transações.
+4. **Suporte Mínimo e Podas**: O suporte mínimo é um parâmetro chave que determina a frequência mínima para considerar um conjunto como "frequente". O FP-Growth utiliza técnicas de poda para otimizar a busca de padrões frequentes.
+
+### Aplicações Comuns
+
+- **Análise de Cesta de Compras**: Em varejo, o FP-Growth é usado para analisar padrões de compra, identificando associações frequentes entre produtos em transações de clientes.
+- **Sistemas de Recomendação**: Pode ser aplicado em sistemas de recomendação para sugerir produtos com base em padrões frequentes identificados em dados de usuários.
+- **Detecção de Padrões em Dados Biológicos**: Em bioinformática, o FP-Growth é utilizado para descobrir padrões frequentes em dados genômicos, auxiliando na compreensão de relações entre genes.
+- **Segmentação de Mercado**: Em marketing, o algoritmo pode ajudar a identificar padrões de comportamento de clientes, facilitando a segmentação de mercado.
+- **Integração com Outros Métodos de Mineração de Dados**: O FP-Growth pode ser combinado com outros métodos de mineração de dados para análises mais abrangentes e descoberta de padrões em grandes conjuntos de dados.
+
+# Pipeline Pyspark
+
+- Sequência de fases executadas em ordem que podem ser Transformers ou Estimators
+- Instância dos objetos, mas não executa (fit e transform)
+- Você constrói o Pipeline com a sequência de etapas
+- E chama o método fit do pipeline para execução
+
+O `Pipeline` no PySpark ML é uma ferramenta que permite encadear vários estágios de processamento de dados e modelagem em uma única sequência. Ele organiza os estágios em uma ordem específica e facilita a execução de todas as etapas de pré-processamento e modelagem em conjunto. A utilização de pipelines é particularmente valiosa em ambientes de big data, onde a automação e a otimização do fluxo de trabalho são cruciais.
+
+### Funcionalidade do Pipeline
+
+1. **Organização de Estágios**: O `Pipeline` organiza uma sequência de estágios, onde cada estágio pode ser uma etapa de pré-processamento, transformação ou modelagem.
+2. **Execução em Sequência**: Os estágios no pipeline são executados em ordem, permitindo a aplicação sistemática de transformações nos dados e a construção do modelo.
+3. **Parâmetros Compartilhados**: Os parâmetros aprendidos em um estágio podem ser compartilhados com outros estágios no pipeline, proporcionando uma integração eficiente entre diferentes componentes.
+4. **Treinamento e Transformação Unificados**: O `Pipeline` facilita a distinção entre estágios de treinamento e transformação, garantindo que o modelo seja treinado apenas nos dados de treinamento, e que as transformações subsequentes sejam aplicadas uniformemente aos conjuntos de treinamento e teste.
+
+### Aplicações Comuns
+
+- **Preparação de Dados**: O `Pipeline` é utilizado para organizar etapas de pré-processamento, como imputação de valores ausentes, codificação de variáveis categóricas e normalização.
+- **Construção de Modelos**: É empregado para encadear estágios de construção de modelos, desde a seleção de features até a aplicação do algoritmo de machine learning.
+- **Automação de Fluxo de Trabalho**: Ajuda na automação de fluxos de trabalho complexos, garantindo consistência e eficiência na aplicação de transformações e modelagem.
+- **Avaliação de Modelos**: O `Pipeline` facilita a avaliação de modelos, permitindo a execução consistente de etapas de transformação e avaliação em diferentes conjuntos de dados.
+- **Integração com o ecossistema PySpark ML**: O `Pipeline` é integrado com outras funcionalidades do PySpark ML, permitindo uma implementação eficiente e escalável em ambientes de big data.
+
+# Ajuste de Hiper Parâmetros
+
+- Um classificador pode ter diversos hiper parâmetros.
+- A configuração dos hiper parâmetros as vezes não é intuitiva e nem “intuitiva”.
+- A combinação de muitos hiper parâmetros pode ser gigantesca.
+- Inviável testar manualmente todas as combinações.
+- Spark facilita o teste de diferentes parâmetros.
+- Podemos testar diferentes configurações para todo Pipeline.
+- ParamGridBuilder: você configura quais parâmetros e quais domínios quer testar.
+- Utiliza o Cross-Validation ou Train-ValidationSplit
+    - Cross-Validation:
+        - Divide os dados de treino em paartições (folds) que são usados para treino (2/3 dos dados) e teste (1/3 dos dados).
+        - 3 partições = 3 conjuntos de treino e 3 de teste.
+        - Essas partições são treinadas e testadas nos domínios do grid de hiper parâmetros fornecidos.
+        - Quando encontrar o melhor conjunto de hiper parâmetros, ele novamente cria o modelo usando todos os dados de treino.
+    - Train-Validation Split
+        - Testa cada configuração do grid de hiper parâmetros uma única vez
+        - trainingratio define a proporção usada para cada treino
+        - Quando encontrar o melhor conjunto de hiper parâmetros, ele novamente cria modelo usando todos os dados de treino
+
+|  | Custo Computacional | Resultados |
+| --- | --- | --- |
+| Cross-Validation |              ⬆️ |           ⬆️ |
+| Train-Validation |               ⬇️ |           ⬇️ |
+
+# CrossValidator e ParamGridBuilder no PySpark ML
+
+O `CrossValidator` e o `ParamGridBuilder` são componentes essenciais no PySpark ML para realizar validação cruzada e busca em grade, respectivamente. Eles são frequentemente utilizados em conjunto para otimizar hiperparâmetros de modelos de machine learning e avaliar o desempenho do modelo em diferentes configurações.
+
+### Funcionalidade do CrossValidator e ParamGridBuilder
+
+1. **CrossValidator**: O `CrossValidator` executa a validação cruzada, que envolve dividir o conjunto de dados em partições (chamadas de folds), treinar o modelo em várias combinações de hiperparâmetros e avaliar o desempenho em cada fold.
+2. **ParamGridBuilder**: O `ParamGridBuilder` é usado para construir uma grade de hiperparâmetros a serem explorados durante a validação cruzada. Ele define diferentes combinações de valores para os hiperparâmetros que o usuário deseja otimizar.
+3. **Avaliação e Escolha do Melhor Modelo**: O `CrossValidator` avalia o desempenho do modelo em cada configuração de hiperparâmetros usando uma métrica específica. Ao final do processo, ele escolhe o modelo com a melhor combinação de hiperparâmetros.
+4. **Treinamento em Múltiplos Conjuntos de Treinamento e Validação**: O `CrossValidator` treina e avalia o modelo em múltiplos conjuntos de treinamento e validação, garantindo uma avaliação robusta do desempenho do modelo.
+
+### Aplicações Comuns
+
+- **Otimização de Hiperparâmetros**: Utilizado para encontrar a combinação ideal de hiperparâmetros que maximizam o desempenho do modelo.
+- **Avaliação de Desempenho Robusta**: A validação cruzada proporciona uma avaliação robusta do desempenho do modelo, uma vez que considera várias divisões dos dados.
+- **Busca em Grade Automatizada**: O `ParamGridBuilder` facilita a construção de grades de hiperparâmetros para explorar diferentes configurações automaticamente.
+- **Evitar Overfitting**: A validação cruzada ajuda a evitar o overfitting, garantindo que o modelo não seja otimizado apenas para um conjunto específico de dados.
+- **Integração com o PySpark ML**: O `CrossValidator` e o `ParamGridBuilder` são integrados ao ecossistema PySpark ML, oferecendo uma solução escalável para otimização de modelos em grandes conjuntos de dados.
+
+# TrainValidationSplit e ParamGridBuilder no PySpark ML
+
+O `TrainValidationSplit` e o `ParamGridBuilder` são componentes importantes no PySpark ML usados para realizar uma divisão de treinamento e validação, além de explorar diferentes combinações de hiperparâmetros para otimização de modelos.
+
+### Funcionalidade do TrainValidationSplit e ParamGridBuilder
+
+1. **TrainValidationSplit**: O `TrainValidationSplit` é um método de avaliação que divide o conjunto de dados em um conjunto de treinamento e um conjunto de validação. Ele treina o modelo em diferentes configurações de hiperparâmetros e avalia o desempenho em relação ao conjunto de validação.
+2. **ParamGridBuilder**: O `ParamGridBuilder` é usado para construir uma grade de hiperparâmetros que serão explorados durante o processo de validação. Ele permite especificar diferentes valores para os hiperparâmetros a serem otimizados.
+3. **Avaliação e Escolha do Melhor Modelo**: O `TrainValidationSplit` treina o modelo em diferentes configurações de hiperparâmetros usando a grade definida pelo `ParamGridBuilder`. Ele avalia o desempenho do modelo no conjunto de validação e escolhe o modelo com a melhor combinação de hiperparâmetros.
+4. **Eficiência de Computação**: O `TrainValidationSplit` é computacionalmente eficiente, pois utiliza apenas um conjunto de validação, ao contrário da validação cruzada que requer várias divisões.
+
+### Aplicações Comuns
+
+- **Otimização de Hiperparâmetros**: Usado para encontrar a combinação ideal de hiperparâmetros que maximize o desempenho do modelo.
+- **Avaliação de Desempenho em Conjunto de Validação**: Permite avaliar o desempenho do modelo em um conjunto de validação antes de aplicá-lo ao conjunto de teste final.
+- **Eficiência Computacional**: Adequado para casos em que a validação cruzada pode ser computacionalmente cara, mas ainda se deseja avaliar o modelo em um conjunto de validação.
+- **Comparação de Modelos com Diferentes Hiperparâmetros**: Facilita a comparação de modelos treinados com diferentes configurações de hiperparâmetros.
+- **Integração com o PySpark ML**: Ambos, `TrainValidationSplit` e `ParamGridBuilder`, são integrados ao ecossistema PySpark ML, proporcionando uma solução escalável para otimização de modelos em grandes conjuntos de dados.
